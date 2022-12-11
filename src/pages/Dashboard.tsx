@@ -253,7 +253,7 @@ export const Dashboard = () => {
         p="32px"
         mt="32px"
         borderRadius="16px"
-        display={{base:"none", xl: "block"}}
+        display={{ base: "none", xl: "block" }}
       >
         <Text
           fontSize="26px"
@@ -330,7 +330,12 @@ export const Dashboard = () => {
           </BarChart>
         </ResponsiveContainer>
       </Box>
-      <Grid gridTemplateColumns="1fr" mt="32px" gap="32px">
+      <Grid
+        gridTemplateColumns="1fr"
+        mt="32px"
+        gap="32px"
+        display={{ base: "grid", xl: "none" }}
+      >
         {failureHappened.map((failure) => (
           <Box
             w="100%"
