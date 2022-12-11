@@ -11,9 +11,13 @@ import { PercentageCard } from "../components/PercentageCard";
 import { BackupByData } from "../components/BackupByDate";
 import { BackupByCategory } from "../components/BackupByCategory";
 import { SimpleCard } from "../components/SimpleCard";
+import { useApiError } from "../hooks/useApiError";
 
 export const Dashboard = () => {
-  const { isLoading, data } = useQuery("getAllClients", () => getAllClients());
+  const { isLoading, data, error } = useQuery("getAllClients", () =>
+    getAllClients()
+  );
+  useApiError(error);
 
   const succesClients = useMemo(
     () => data?.filter((client) => client.status === "sucesso"),
@@ -103,6 +107,10 @@ export const Dashboard = () => {
         </Flex>
       </Wireframe>
     );
+  }
+
+  if (error) {
+    return null;
   }
 
   return (

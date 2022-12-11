@@ -7,11 +7,15 @@ import { useEffect, useState } from "react";
 import { ClientDTO } from "../services/dtos/clientDTO";
 import { HeaderTable } from "../components/HeaderTable";
 import { DataTable } from "../components/DataTable";
+import { useApiError } from "../hooks/useApiError";
 
 export const InfosGerais = () => {
-  const { isLoading, data: apiData } = useQuery("getAllClients", () =>
-    getAllClients()
-  );
+  const {
+    isLoading,
+    data: apiData,
+    error,
+  } = useQuery("getAllClients", () => getAllClients());
+  useApiError(error);
 
   const [data, setData] = useState<ClientDTO[] | undefined>(apiData);
 
@@ -48,6 +52,10 @@ export const InfosGerais = () => {
         </Flex>
       </Wireframe>
     );
+  }
+
+  if (error) {
+    return null;
   }
 
   return (
