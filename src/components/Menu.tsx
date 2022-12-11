@@ -9,6 +9,7 @@ import {
   Link,
   Text,
   Tooltip,
+  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { menu } from "../routes/routes";
@@ -22,7 +23,7 @@ export const Menu = () => {
       <Flex
         flexDir="column"
         gap="16px"
-        bg="#602BF8"
+        bg="primary"
         color="white"
         p="16px"
         borderRadius="64px"
@@ -38,7 +39,7 @@ export const Menu = () => {
             align="center"
             justify="center"
             transition="0.3s"
-            _hover={{ bg: "#24047C" }}
+            _hover={{ bg: "secondary" }}
           >
             <Link href={item.path}>
               <Tooltip label={item.name} placement="right">
@@ -51,7 +52,7 @@ export const Menu = () => {
       <Button
         flexDir="column"
         gap="16px"
-        bg="#602BF8"
+        bg="primary"
         color="white"
         p="16px"
         w="42px"
@@ -66,36 +67,40 @@ export const Menu = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerBody>
-            <Flex justify="flex-end">
-              <Button
-                mt="32px"
-                fontSize="22px"
-                bg="transparent"
-                onClick={onClose}
-              >
-                <MdClose />
-              </Button>
-            </Flex>
-            <Flex mt="64px" flexDir="column" gap="16px">
-              {menu.map((item) => (
-                <Flex
-                  key={item.name}
-                  fontSize="24px"
-                  borderRadius="100%"
-                  align="center"
-                  transition="0.3s"
+            <Box
+              color={useColorModeValue("black", "white")}
+            >
+              <Flex justify="flex-end">
+                <Button
+                  mt="32px"
+                  fontSize="22px"
+                  bg="transparent"
+                  onClick={onClose}
                 >
-                  <Link href={item.path}>
-                    <Flex gap="16px">
-                      <Box fontSize="32px">{item.icon}</Box>
-                      <Box>
-                        <Text>{item.name}</Text>
-                      </Box>
-                    </Flex>
-                  </Link>
-                </Flex>
-              ))}
-            </Flex>
+                  <MdClose />
+                </Button>
+              </Flex>
+              <Flex mt="64px" flexDir="column" gap="16px">
+                {menu.map((item) => (
+                  <Flex
+                    key={item.name}
+                    fontSize="24px"
+                    borderRadius="100%"
+                    align="center"
+                    transition="0.3s"
+                  >
+                    <Link href={item.path}>
+                      <Flex gap="16px">
+                        <Box fontSize="32px">{item.icon}</Box>
+                        <Box>
+                          <Text>{item.name}</Text>
+                        </Box>
+                      </Flex>
+                    </Link>
+                  </Flex>
+                ))}
+              </Flex>
+            </Box>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

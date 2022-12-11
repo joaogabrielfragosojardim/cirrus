@@ -6,6 +6,7 @@ export const getAllClients = async () => {
 
   const dateBR = data.map((item) => ({
     ...item,
+    motivo: !item.motivo ? "sem motivo de falha" : item.motivo,
     dataBr: item.data.toString().split("-").reverse().join("/"),
   }));
 
